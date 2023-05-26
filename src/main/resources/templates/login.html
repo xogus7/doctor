@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DTX-EYE</title>
+    <script src="https://kit.fontawesome.com/eba6728025.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="auth-template-block">
+        <div class="white-box">
+            <div class="logo-area">
+                <a1 href="/">DTX-EYE</a1>
+            </div>
+            <div class="login-form">
+                <a class="kakao-login-btn" href="/oauth2/authorization/kakao">
+                    <i class="fa-solid fa-comment text-[color:#ffe812]"></i>
+                    카카오톡으로 간편 로그인
+                </a>
+                <a class="google-login-btn" href="/oauth2/authorization/google" >
+                    <i class="fa-brands fa-google text-[color:#ff4000]"></i>
+                    구글로 간편 로그인
+                </a>
+                <a class="naver-login-btn" href="/oauth2/authorization/naver" >
+                    <i class="fa-solid fa-n text-[color:#2DB400]"></i>
+                    네이버로 간편 로그인
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    .auth-template-block{
+position: absolute;
+left: 0;
+top: 0;
+right: 0;
+bottom: 0;
+background: #F5D0AB;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.white-box {
+box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
+padding: 2rem;
+width: 350px;
+background: white;
+border-radius: 15px;
+border: 1px solid #e9ecef;
+}
+
+.white-box .logo-area {
+display: block;
+padding-bottom: 2rem;
+text-align: center;
+font-weight: bold;
+letter-spacing: 2px;
+}
+.btn{
+font-size: 1rem;
+border: none;
+border: 1px solid ${palette.gray[3]};
+border-radius: 0.25rem;
+padding: 0.5rem;
+padding-bottom: 0.5rem;
+outline: none;
+width: 100%;
+&:focus {
+  color: $oc-teal-7;
+  border: 1px solid ${palette.gray[7]};
+}
+& + & {
+  margin-top: 0.5rem;
+}
+}
+a1{
+color: black;
+font-size: x-large;
+border: none;
+border-radius: 0.25rem;
+padding: 0.5rem;
+padding-bottom: 0.5rem;
+outline: none;
+}
+/* 카카오톡 로그인 버튼 스타일 */
+.kakao-login-btn {
+  display: inline-block;
+  background-color: #FFEB00;
+  border-radius: 15px;
+  width: 350px;
+  height: 65px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #3C1E1E;
+  text-align: center;
+  line-height: 65px;
+  cursor: pointer;
+  text-decoration: none;
+   margin-bottom: 10px;
+}
+
+.kakao-login-btn:hover {
+  background-color: #F2D600;
+}
+/*구글로그인버튼*/
+.google-login-btn {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 15px;
+  color: #757575;
+  width: 350px;
+  border: 1px solid #dadce0;
+  height: 65px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  text-align: center;
+  line-height: 65px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.google-login-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.google-login-btn:active {
+  background-color: #eeeeee;
+}
+
+/*네이버 로그인 버튼*/
+.naver-login-btn {
+  display: inline-block;
+  background-color: #1EC800;
+  border-radius: 15px;
+  width: 350px;
+  height: 65px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #3C1E1E;
+  text-align: center;
+  line-height: 65px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.naver-login-btn:hover {
+  background-color: #3dc500;
+}
+
+.naver-login-btn:active {
+  background-color: #1B7E00;
+}
+
+</style>
+</html>
+

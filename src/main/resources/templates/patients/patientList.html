@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.css">
+
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div>
+        <span id="login-user" th:text="${userName}">사용자</span>님, 안녕하세요.
+    </div>
+    <div>
+
+        <div class="flex_container">
+            <form th:object="${patientSearch}" class="form-inline">
+                <div class="form-group mb-2">
+                    <input type="text" th:field="*{memberName}" class="form-control" placeholder="환자이름을 입력하세요"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-2">검색</button>
+            </form>
+
+            <div>
+                <button type="button" class="btn btn-primary mb-2" onclick ="location.href='/logout'">로그아웃하기</button>
+            </div>
+        </div>
+        <table class="table table-striped">
+
+            <thead>
+
+            <tr>
+                <th>#</th>
+                <th>환자정보</th>
+                <th>환자명</th>
+                <th>생년월일</th>
+                <th>보호자 전화번호</th>
+                <th>성별</th>
+                <th>착용한 시간</th>
+                <th>착용해야 하는 시간</th>
+                <th>착용한 날</th>
+                <th>착용해야 하는 날</th>
+
+                <th>메뉴</th>
+                <th></th>
+            </tr>
+
+            </thead>
+            <tbody>
+
+            <tr th:each="patient : ${patients}">
+
+                <td th:text="${patient.id}"></td>
+                <td>
+                <a href="#" th:href="@{/patients/{id}/detail (id=${patient.id})}"
+                   class="btn btn-primary" role="button">정보</a>
+                </td>
+                <td th:text="${patient.getPatientName()}"></td>
+                <td th:text="${patient.birthday}"></td>
+                <td th:text="${patient.getGuardianPhoneNumber()}"></td>
+                <td th:text="${patient.getGender()}"></td>
+                <td th:text="${patient.getWearingTime()}"></td>
+                <td th:text="${patient.getCorrectionTime()}"></td>
+                <td th:text="${patient.getWearingDay()}"></td>
+                <td th:text="${patient.getCorrectionDay()}"></td>
+
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color: #3c6ffa" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
+                            ⋮
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" th:href="@{/patients/{id}/edit (id=${patient.id})}">수정하기</a></li>
+                            <li><a class="dropdown-item" href="#" th:href="@{/patients/{id}/delete (id=${patient.id})}">삭제하기</a></li>
+                        </ul>
+                    </div>
+                </td>
+
+            </tr>
+<!--                <td>-->
+<!--                    <a th:if="${item.status.name() == 'ORDER'}" href="#"-->
+<!--                       th:href="'javascript:cancel('+${item.id}+')'"-->
+<!--                       class="btn btn-danger">CANCEL</a>-->
+<!--                </td>-->
+            </tbody>
+        </table>
+        </div>
+        <div class="add">
+            <a href="/patients/new" class="btn btn-primary" role="button">+</a>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+
+<script>
+    function cancel(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/orders/" + id + "/cancel");
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+<script>
+    function deleteData(){
+        if(!confirm("삭제하시면 복구할 수 없습니다. \n정말 환자정보를 삭제하시겠습니까?")){
+            return false;
+        }
+    }
+</script>
+</html>
