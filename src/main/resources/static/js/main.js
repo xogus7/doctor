@@ -93,6 +93,8 @@ function calendarInit() {
                 i.classList.remove('select_day'); // 이전 선택 날짜 삭제
             });
             currentMonthDate[selectDate - 1].classList.add('select_day'); // 현재 선택 날짜
+            let temp = document.querySelector('#example').children.item(0).children.item(0).children.item(0).children.item(1);
+            temp.scrollTo({top: 41 * (selectDate - 1)});
         });
     });
 
@@ -135,65 +137,91 @@ function progressBar(i) {
 
 /* daily time graph sample */
 
-// var scriptElement = document.createElement("script");
-// scriptElement.src = "https://www.gstatic.com/charts/loader.js";
-// scriptElement.defer = true;
-//
-// scriptElement.onload = function () {
-//     google.charts.load("current", {packages: ["timeline"]});
-//     google.charts.setOnLoadCallback(drawChart);
-// };
-// document.head.appendChild(scriptElement);
-//
-// google.charts.load("current", {packages: ["timeline"]});
-// google.charts.setOnLoadCallback(drawChart);
-//
-// function drawChart() {
-//
-//     var container = document.getElementById('example5.2');
-//     var chart = new google.visualization.Timeline(container);
-//     var dataTable = new google.visualization.DataTable();
-//
-//     dataTable.addColumn({type: 'string', id: 'date'});
-//     dataTable.addColumn({type: 'date', id: 'Start'});
-//     dataTable.addColumn({type: 'date', id: 'End'});
-//     dataTable.addRows([
-//         ['1', new Date(0, 0, 0, 12, 0, 0), new Date(0, 0, 0, 14, 0, 0),],
-//         ['1', new Date(0, 0, 0, 15, 0, 0), new Date(0, 0, 0, 17, 0, 0),],
-//         ['2', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
-//         ['3', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 19, 0, 0)],
-//         ['4', new Date(0, 0, 0, 12, 30, 0), new Date(0, 0, 0, 14, 0, 0)],
-//         ['5', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
-//         ['6', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 0, 0)],
-//         ['7', new Date(0, 0, 0, 12, 30, 0), new Date(0, 0, 0, 14, 0, 0)],
-//         ['8', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
-//         ['9', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 30, 0)]]);
-//
-//     var options = {
-//         timeline: {singleColor: '#7B68EE'},
-//         height: 397,
-//         hAxis: {
-//             ticks: [new Date(0, 0, 0, 1),new Date(0, 0, 0, 2),new Date(0, 0, 0, 3),new Date(0, 0, 0, 4),new Date(0, 0, 0, 5),new Date(0, 0, 0, 6),new Date(0, 0, 0, 7),new Date(0, 0, 0, 8)],
-//             // minValue: new Date(0, 0, 0, 1),
-//             // maxValue: new Date(0, 0, 0, 24),
-//         },
-//         axes: {
-//             x: {
-//                 0: {side: 'top'}
-//             }
-//         },
-//     };
-//     chart.draw(dataTable, options);
-// }
-// //create trigger to resizeEnd event
-// $(window).resize(function() {
-//     if(this.resizeTO) clearTimeout(this.resizeTO);
-//     this.resizeTO = setTimeout(function() {
-//         $(this).trigger('resizeEnd');
-//     }, 500);
-// });
-//
-// //redraw graph when window resize is completed
-// $(window).on('resizeEnd', function() {
-//     drawChart();
-// });
+var scriptElement = document.createElement("script");
+scriptElement.src = "https://www.gstatic.com/charts/loader.js";
+scriptElement.defer = true;
+
+scriptElement.onload = function () {
+    google.charts.load("current", {packages: ["timeline"]});
+    google.charts.setOnLoadCallback(drawChart);
+};
+document.head.appendChild(scriptElement);
+
+google.charts.load("current", {packages: ["timeline"]});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+    var container = document.getElementById('example');
+    var chart = new google.visualization.Timeline(container);
+    var dataTable = new google.visualization.DataTable();
+
+    dataTable.addColumn({type: 'string', id: 'date'});
+    dataTable.addColumn({type: 'date', id: 'Start'});
+    dataTable.addColumn({type: 'date', id: 'End'});
+    dataTable.addRows([
+        ['1일', new Date(0, 0, 0, 0, 0, 0), new Date(0, 0, 0, 4, 0, 0),],
+        ['1일', new Date(0, 0, 0, 8, 0, 0), new Date(0, 0, 0, 9, 0, 0),],
+        ['2일', new Date(0, 0, 0, 22, 30, 0), new Date(0, 0, 0, 24, 0, 0)],
+        ['3일', new Date(0, 0, 0, 3, 30, 0), new Date(0, 0, 0, 5, 0, 0)],
+        ['4일', new Date(0, 0, 0, 11, 30, 0), new Date(0, 0, 0, 14, 0, 0)],
+        ['5일', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
+        ['6일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 0, 0)],
+        ['7일', new Date(0, 0, 0, 12, 30, 0), new Date(0, 0, 0, 14, 0, 0)],
+        ['8일', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
+        ['9일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 30, 0)],
+        ['10일', new Date(0, 0, 0, 12, 0, 0), new Date(0, 0, 0, 14, 0, 0),],
+        ['11일', new Date(0, 0, 0, 15, 0, 0), new Date(0, 0, 0, 17, 0, 0),],
+        ['12일', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
+        ['13일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 19, 0, 0)],
+        ['14일', new Date(0, 0, 0, 12, 30, 0), new Date(0, 0, 0, 14, 0, 0)],
+        ['15일', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
+        ['16일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 0, 0)],
+        ['17일', new Date(0, 0, 0, 12, 30, 0), new Date(0, 0, 0, 14, 0, 0)],
+        ['18일', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
+        ['19일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 30, 0)],
+        ['20일', new Date(0, 0, 0, 12, 0, 0), new Date(0, 0, 0, 14, 0, 0),],
+        ['21일', new Date(0, 0, 0, 15, 0, 0), new Date(0, 0, 0, 17, 0, 0),],
+        ['22일', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
+        ['23일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 19, 0, 0)],
+        ['24일', new Date(0, 0, 0, 12, 30, 0), new Date(0, 0, 0, 14, 0, 0)],
+        ['25일', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
+        ['26일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 0, 0)],
+        ['27일', new Date(0, 0, 0, 12, 30, 0), new Date(0, 0, 0, 14, 0, 0)],
+        ['28일', new Date(0, 0, 0, 14, 30, 0), new Date(0, 0, 0, 16, 0, 0)],
+        ['29일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 30, 0)],
+        ['30일', new Date(0, 0, 0, 16, 30, 0), new Date(0, 0, 0, 18, 30, 0)]
+    ]);
+
+    var options = {
+        timeline: { colors: '#cbb69d' },
+        avoidOverlappingGridLines: false,
+
+        height: 397,
+        hAxis: {
+            ticks: [
+                new Date(0, 0, 0, 1),
+                new Date(0, 0, 0, 4),
+                new Date(0, 0, 0, 8),
+                new Date(0, 0, 0, 12),
+                new Date(0, 0, 0, 16),
+                new Date(0, 0, 0, 20),
+                new Date(0, 0, 0, 24)
+            ],
+            format: 'HH',
+        }
+    };
+    chart.draw(dataTable, options);
+}
+//create trigger to resizeEnd event
+$(window).resize(function() {
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+    this.resizeTO = setTimeout(function() {
+        $(this).trigger('resizeEnd');
+    }, 500);
+});
+
+//redraw graph when window resize is completed
+$(window).on('resizeEnd', function() {
+    drawChart();
+});
